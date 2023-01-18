@@ -1,4 +1,5 @@
 # Two Number Sum
+
 '''
 Write a function that takes in a non-empty array of distinct integers and an
 integer representing a target sum. If any two numbers in the input array sum
@@ -13,6 +14,7 @@ target sum.
 You can assume that there will be at most one pair of numbers summing up to
 the target sum.
 '''
+
 # O(n^2) Solution: 
 def twoNumberSum(array, targetSum):
     for x in range(0, len(array)):
