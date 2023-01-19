@@ -23,7 +23,7 @@ def twoNumberSum(array, targetSum):
                 return [array[x], array[y]]
     return []
 
-# O(n) Solution:
+# O(n) Solution: 
 def twoNumberSumOptimal(array, targetSum):
         intSet = set(x for x in array)
     for y in array:
