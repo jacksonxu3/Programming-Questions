@@ -22,7 +22,7 @@ def isValidSubsequence(array, sequence):
     return True
 
 # Cleaner version
-def isValidSubsequenceOptimal(array, sequence):
+def isValidSubsequence(array, sequence):
     if (len(sequence) > len(array)):
         return False
     tracker = 0
@@ -30,9 +30,8 @@ def isValidSubsequenceOptimal(array, sequence):
     # len(seq) tells you the amount of required valid elements
     # and will perfectly match up with the tracker variable
     for x in array:
-        if tracker == len(sequence):
+        if (tracker == len(sequence)):
             return True
         if (sequence[tracker] == x):
             tracker += 1
     return tracker == len(sequence)
-  
