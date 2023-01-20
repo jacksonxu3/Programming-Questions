@@ -17,6 +17,7 @@ the target sum.
 
 # O(n^2) Solution: 
 def twoNumberSum(array, targetSum):
+    # Double for loop to search an array and find a match
     for x in range(0, len(array)):
         for y in range(x+1, len(array)):
             if (array[x] + array[y] == targetSum):
@@ -25,8 +26,10 @@ def twoNumberSum(array, targetSum):
 
 # O(n) Solution: 
 def twoNumberSumOptimal(array, targetSum):
+    # Create a set, set search runs faster than array search
         intSet = set(x for x in array)
     for y in array:
+        # Find a target to search for in a set
         targetInt = targetSum - y
         if (targetInt in intSet):
             if (targetInt != y):
