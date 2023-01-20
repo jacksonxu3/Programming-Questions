@@ -11,5 +11,5 @@ def sortedSquaredArray(array):
     unsortedSquares = [x*x for x in array]
     unsortedSquares.sort()
     return unsortedSquares
-  
+
 # Optimal Solution
