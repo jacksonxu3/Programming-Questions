@@ -13,7 +13,7 @@ def nonConstructibleChangeOptimal(coins):
         return 1
     # Sort the coins
     coins.sort()
-    # Keep track of the minimum value that you have created
+    # Keep track of the maximum value that you have created
     # Allow the algorithm to end early in certain cases
     sum = 0
     # Run a for loop over all of the sorted coins
