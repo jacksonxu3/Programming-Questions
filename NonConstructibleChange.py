@@ -5,7 +5,6 @@ Given an array of positive integers, determine the smallest integer
 that cannot be created by summing any amount of the given integers. 
 '''
 
-
 # Optimal solution, O(n log n)
 def nonConstructibleChangeOptimal(coins):
   # Return 1 if the array is empty
