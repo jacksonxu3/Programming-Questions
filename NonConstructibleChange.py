@@ -17,7 +17,7 @@ def nonConstructibleChangeOptimal(coins):
     sum = 0
     # Run a for loop over all of the sorted coins
     for coin in coins:
-        # Return if there is at least a 1 integer gap between the 
+        # Return if there is at least a 1 integer gap between the
         # previous coins' sum max and the next coin
         if coin > sum + 1:
             return sum + 1
