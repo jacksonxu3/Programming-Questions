@@ -26,3 +26,4 @@ def nonConstructibleChangeOptimal(coins):
             sum += coin
     # If we reach the last coin, then just return total sum + 1
     return sum + 1
+ 
