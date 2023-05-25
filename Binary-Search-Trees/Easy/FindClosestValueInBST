@@ -1,0 +1,7 @@
+# Find Closest Value In BST
+
+'''
+Write a function that takes in a BST and an integer value, that returns the closest value
+to the given integer value that exists in the BST.
+'''
+
