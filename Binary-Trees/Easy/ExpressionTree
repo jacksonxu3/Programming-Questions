@@ -1,0 +1,36 @@
+# Evaluate Expression Tree
+
+'''
+Write a function that takes in a Binary Tree. Each non-leaf node in the tree 
+represents a arithmetic operation to do with the two child nodes. 
+-1 = addition
+-2 = subtraction
+-3 = division
+-4 = multiplication
+'''
+
+# Runtime of O(n)
+# This is an input class. Do not edit.
+class BinaryTree:
+    def __init__(self, value, left=None, right=None):
+        self.value = value
+        self.left = left
+        self.right = right
+
+def evaluateExpressionTree(tree):
+    # Return 0 if tree is empty
+    if tree.value == None:
+        return 0
+    # Go through cases based on the node value
+    elif tree.value == -1:
+            return (evaluateExpressionTree(tree.left) + evaluateExpressionTree(tree.right))
+    elif tree.value == -2:
+            return (evaluateExpressionTree(tree.left) - evaluateExpressionTree(tree.right))
+    # Use int(a/b), rather than a//b
+    elif tree.value == -3:
+            return int(evaluateExpressionTree(tree.left) / evaluateExpressionTree(tree.right))
+    elif tree.value == -4:
+            return (evaluateExpressionTree(tree.left) * evaluateExpressionTree(tree.right))
+    # At leaves, return the value to use in the computation
+    else:
+        return tree.value
