@@ -1,0 +1,27 @@
+# Node Depths
+
+'''
+Write a function that takes in a BST that returns the total depth of every single node.
+'''
+
+# Runtime of O(n)
+def nodeDepths(root):
+    if root == None:
+        return 0
+    # Cannot use global integer, as Python makes deep copy
+    # First node has depth 0, children of main root are depth 1
+    return nodeDepthsHelper(root.left, 1) + nodeDepthsHelper(root.right, 1)
+    
+def nodeDepthsHelper(root, depth):
+    # If node doesn't exist, then return 0 and end recursion
+    if root == None:
+        return 0
+    # Else add its depth, and recurse on children
+    return depth + nodeDepthsHelper(root.left, depth + 1) + nodeDepthsHelper(root.right, depth + 1)
+
+# This is the class of the input binary tree.
+class BinaryTree:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
