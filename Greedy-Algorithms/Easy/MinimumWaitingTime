@@ -1,0 +1,19 @@
+# Minimum Waiting Time
+ 
+ '''
+ Given an array of integers that represent the length of a task, compute the minimum
+ waiting time. That is, the sum that every task must wait before it can start being done.
+ '''
+ 
+ # Time of O(n log n)
+ # Greedy solution of doing the shortest tasks first
+ def minimumWaitingTime(queries):
+    prev_time = 0
+    sum_time = 0
+    if len(queries) == 0:
+        return time
+    queries.sort()
+    for item in queries:
+        sum_time += prev_time
+        prev_time += item
+    return sum_time
