@@ -1,0 +1,29 @@
+# Branch Sums
+
+'''
+Write a function that takes in a Binary Tree and returns an array of the sum of the paths
+from the root to the leaf, going from left to right on the tree.
+'''
+
+# This is the class of the input root. Do not edit it.
+class BinaryTree:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+def branchSums(root):
+    arr = []
+    if root != None:
+        branchSumsHelper(root, 0, arr)
+    return arr
+
+def branchSumsHelper(root, prev_sum, arr):
+    if (root == None):
+        return
+    # Check if the current root is a leaf
+    if ((root.left == None) and (root.right == None)):
+        arr.append(prev_sum + root.value)
+        return
+    branchSumsHelper(root.left, root.value + prev_sum, arr)
+    branchSumsHelper(root.right, root.value + prev_sum, arr)
