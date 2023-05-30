@@ -1,0 +1,28 @@
+# Class Photos 
+
+'''
+Given two arrays of integers, determine if there exists an ordering of the 
+two arrays such that for every pair of integers with the same index, the integer 
+in the back row is greater than its paired integer in the front row. 
+'''
+
+# Runtime of O(n log n)
+# Solution will be to sort each array, and then compare it to 
+# its paired index in the other sorted array. 
+def classPhotos(redShirtHeights, blueShirtHeights):
+    # Sort the two arrays from descending to ascending
+    redShirtHeights.sort()
+    blueShirtHeights.sort()
+    
+    # Red in front
+    red_in_front = zip(redShirtHeights, blueShirtHeights)
+    valid1 = map(lambda x: x[0] < x[1], red_in_front)
+    if False not in valid1:
+        return True
+    # Blue in front
+    blue_in_front = zip(blueShirtHeights, redShirtHeights)
+    valid2 = map(lambda x: x[0] < x[1], blue_in_front)
+    if False not in valid2:
+        return True
+    # Return false if both orders are invalid. 
+    return False
