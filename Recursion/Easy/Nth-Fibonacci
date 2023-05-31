@@ -1,0 +1,24 @@
+# Nth Fibonacci
+
+'''
+Given an integer n, return the nth fibonacci number.
+'''
+
+Runtime of O(2^n)
+# No memoization
+def getNthFib(n):
+    if n == 1:
+        return 0
+    elif n == 2:
+        return 1
+    else:
+        return getNthFib(n-1) + getNthFib(n-2)
+
+Runtime of O(n)
+# Memoization
+def getNthFibMemoize(n, dict):
+    if n in dict:
+        return dict[n]
+    else:
+        dict[n] = getNthFibMemoize(n-1, dict) + getNthFibMemoize(n-2, dict)
+        return dict[n]
