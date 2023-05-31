@@ -1,0 +1,25 @@
+# Middle Node
+
+'''
+Given a Singly Linked List, return the middle node of it.
+'''
+
+# Runtime of O(n)
+# This is an input class. Do not edit.
+class LinkedList:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+def middleNode(linkedList):
+    length = 0
+    curr_node = linkedList
+    # Get the length of the Linked List
+    while curr_node != None:
+        length += 1
+        curr_node = curr_node.next
+    curr_node = linkedList
+    # Go to the middle and return it
+    for indx in range(length//2):
+        curr_node = curr_node.next
+    return curr_node
