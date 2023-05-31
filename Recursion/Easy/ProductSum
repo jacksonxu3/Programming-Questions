@@ -1,0 +1,22 @@
+# Product Sum
+
+'''
+Given an special array, which is an array that contains integers and 
+nested special ararys, return the sum of all elements multiplied by their
+nested depth. 
+'''
+
+# Runtime of O(n)
+def productSum(array):
+    return productSumHelper(array, 1)
+
+def productSumHelper(array, depth):
+    sum = 0
+    for item in array:
+        # Recurse into nested arrays
+        if type(item) == list:
+            sum += (productSumHelper(item, depth+1)*depth)
+        # Add ints into sum
+        else:
+            sum += (item*depth)
+    return sum
