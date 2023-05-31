@@ -1,0 +1,32 @@
+# Remove Duplicates from Singly Linked List
+
+'''
+Given the head of a Singly Linked List, modify the linked list so that
+all nodes with duplicate values are removed. 
+'''
+
+# Runtime of O(n)
+# This is an input class. Do not edit.
+class LinkedList:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+def removeDuplicatesFromLinkedList(linkedList):
+    # Keep track of the first node with an unseen value,
+    # the value of that node, and the current node we are testing.
+    curr_node = linkedList
+    curr_value = None
+    locked_node = None
+    # Iterate through every node
+    while curr_node != None:
+        # If the current node value has been seen, remove it
+        if curr_node.value == curr_value:
+            locked_node.next = curr_node.next
+        # Otherwise edit the current value and lock in the current node
+        else:
+            curr_value = curr_node.value
+            locked_node = curr_node
+        # Go to next node at the end of each iteration
+        curr_node = curr_node.next
+    return linkedList
