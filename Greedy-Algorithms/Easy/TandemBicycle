@@ -1,0 +1,27 @@
+# Tandem Bicycle
+
+'''
+Given two arrays of speeds and a boolean 'Fastest', find a pairing of the two arrays
+such that the sum of all max(pair), results in either a minimum or maximum based on the
+boolean. 
+'''
+
+def tandemBicycle(redShirtSpeeds, blueShirtSpeeds, fastest):
+    redShirtSpeeds.sort()
+    blueShirtSpeeds.sort()
+    speed = 0
+    
+    # For min speed, pair low with low, high with high
+    if fastest == False:
+        min_zip = zip(redShirtSpeeds, blueShirtSpeeds)
+        for pair1 in min_zip:
+            speed += max(pair1)
+        return speed
+
+    # For max speed, pair high with low
+    elif fastest == True:
+        blueShirtSpeeds.reverse()
+        max_zip = zip(redShirtSpeeds, blueShirtSpeeds)
+        for pair2 in max_zip:
+            speed += max(pair2)
+        return speed
