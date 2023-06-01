@@ -1,0 +1,19 @@
+# Selection Sort
+
+'''
+Selection Sort
+'''
+
+# Runtime of O(n^2)
+def selectionSort(array):
+    for indx in range(0, len(array)-1):
+        smallest_value = array[indx]
+        smallest_indx = indx
+        for indx2 in range(indx, len(array)):
+            if array[indx2] < smallest_value:
+                smallest_value = array[indx2]
+                smallest_indx = indx2
+        temp = array[indx]
+        array[indx] = smallest_value
+        array[smallest_indx] = temp
+    return array
