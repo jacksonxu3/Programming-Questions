@@ -1,0 +1,27 @@
+# Find Three Largest Numbers
+
+'''
+Given an unsorted array of integers, return a sorted array of the
+three largest integers in the array.
+'''
+
+# Runtime of O(n)
+def findThreeLargestNumbers(array):
+    # Largest numbers, first is smallest and third is largest
+    first = None
+    second = None
+    third = None
+    for item in array:
+        # Compare item to largest number
+        if (third == None) or (item > third):
+            first = second
+            second = third
+            third = item
+        # Compare item to medium number
+        elif (second == None) or (item > second):
+            first = second
+            second = item
+        # Compare item to smallest number
+        elif (first == None) or (item > first):
+            first = item
+    return [first, second, third]
