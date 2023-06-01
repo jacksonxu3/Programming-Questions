@@ -1,0 +1,15 @@
+# Bubble Sort
+
+'''
+Bubble Sort
+'''
+
+# Runtime of O(n^2)
+def bubbleSort(array):
+    for _ in range(len(array)):
+        for indx in range(len(array) - 1):
+            if array[indx + 1] < array[indx]:
+                temp = array[indx + 1]
+                array[indx + 1] = array[indx]
+                array[indx] = temp
+    return array
