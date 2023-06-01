@@ -1,0 +1,16 @@
+# Insertion Sort
+
+'''
+Insertion Sort
+'''
+
+# Runtime of O(n^2)
+def insertionSort(array):
+    for indx in range(1, len(array)):
+        comp_indx = indx
+        while (comp_indx > 0) and (array[comp_indx] < array[comp_indx-1]):
+            temp = array[comp_indx]
+            array[comp_indx] = array[comp_indx-1]
+            array[comp_indx-1] = temp
+            comp_indx -= 1
+    return array
