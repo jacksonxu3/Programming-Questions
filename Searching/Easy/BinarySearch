@@ -1,0 +1,21 @@
+# Binary Search
+
+'''
+Binary Search
+'''
+
+# Runtime of O(log n)
+def binarySearch(array, target):
+    left_indx = 0
+    right_indx = len(array) - 1
+    center_indx = len(array)//2
+    half_length = center_indx//2
+    while left_indx <= right_indx:
+        if array[center_indx] == target:
+            return center_indx
+        elif array[center_indx] < target:
+            left_indx = center_indx + 1
+        elif array[center_indx] > target:
+            right_indx = center_indx - 1
+        center_indx = (left_indx + right_indx) // 2
+    return -1
