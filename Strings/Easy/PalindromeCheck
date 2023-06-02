@@ -1,0 +1,16 @@
+# Palindrome Check
+
+'''
+Given a string, return if it is palindrome.
+'''
+
+# Runtime of O(n)
+def isPalindrome(string):
+    start_indx = 0
+    end_indx = len(string) - 1
+    while start_indx <= end_indx:
+        if string[start_indx] != string[end_indx]:
+            return False
+        start_indx += 1
+        end_indx -= 1
+    return True
