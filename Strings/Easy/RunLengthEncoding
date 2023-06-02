@@ -1,0 +1,23 @@
+# Run-Length Encoding
+
+'''
+Given a string, return its run length encoding. This is done by counting the 
+number of consecutive characters per character, and encoding them as 
+"count-character". The largest consecutive number is 9, any larger numbers
+must be split apart. For example, 12 = 9 + 3. 
+'''
+
+def runLengthEncoding(string):
+    toReturn = ""
+    locked_char = string[0]
+    curr_count = 0
+    for character in string:
+        if (character != locked_char) or (curr_count >= 9):
+            toReturn += (str(curr_count)) + (locked_char)
+            curr_count = 1
+            locked_char = character
+        elif character == locked_char:
+            curr_count += 1
+    # Last character set not covered in iteration
+    toReturn += (str(curr_count)) + (locked_char)
+    return toReturn
