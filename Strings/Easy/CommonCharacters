@@ -1,0 +1,20 @@
+# Common Characters
+
+'''
+Given an array of strings, return an array containing characters that
+are contained in all of the strings. 
+'''
+
+# Runtime of O(nm), n = number of strings, m = length of longest string
+def commonCharacters(strings):
+    # Use the first string to make a set
+    # Need two sets, as set cannot change size during iteration
+    first_string = set(strings[0])
+    toReturn = set(strings[0])
+    # Iterate over every letter in the set and then every string
+    for letter in first_string:
+        for string in strings:
+            if letter not in string:
+                toReturn.remove(letter)
+                break
+    return list(toReturn)
