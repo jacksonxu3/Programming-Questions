@@ -1,0 +1,22 @@
+# Generate Document
+
+'''
+Given a string of characters and a document, return if you 
+can use these characters to generate the document. 
+'''
+
+# Runtime of O(n+m), where n = length of characters, m = length of documents
+# Cannot use two dictionaries, as comparing them is difficult
+def generateDocument(characters, document):
+    character_dict = {}
+    for character in characters:
+        if character in character_dict:
+            character_dict[character] += 1
+        else:
+            character_dict[character] = 1
+    for character2 in document:
+        if (character2 in character_dict) and (character_dict[character2] > 0):
+            character_dict[character2] -= 1
+        else:
+            return False
+    return True
