@@ -1,0 +1,18 @@
+# Semordnilap
+
+'''
+Given an array of words, return pairs of words that are
+palidromes of one another.
+'''
+
+# Runtime of O(nm), n = number of words, m = longest word length
+def semordnilap(words):
+    toReturn = []
+    indx = 0
+    for word1 in words:
+        indx += 1
+        # Use remaining list to prevent counting single palindromes
+        for word2 in words[indx:]:
+            if (word1 == word2[::-1]):
+                toReturn.append([word1, word2])
+    return toReturn
