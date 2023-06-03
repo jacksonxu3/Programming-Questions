@@ -1,0 +1,16 @@
+# Caesar Cipher Encryptor
+
+'''
+# Given a string and an integer, encrypt the string by shifting
+every letter in the string by the integer. Assume the alphabet
+loops back around after 'z' back to 'a'.
+'''
+
+Runtime of O(n)
+def caesarCipherEncryptor(string, key):
+    alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m', \
+                'n','o','p','q','r','s','t','u','v','w','x','y','z']
+    toReturn = ""
+    for character in string:
+        toReturn += alphabet[(alphabet.index(character) + key) % 26]
+    return toReturn
