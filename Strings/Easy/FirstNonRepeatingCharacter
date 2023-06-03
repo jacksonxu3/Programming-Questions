@@ -1,0 +1,22 @@
+# First Non-Repeating Character
+
+'''
+Given a string, return the index of the first non-repeated character
+'''
+
+Runtime of O(n)
+def firstNonRepeatingCharacter(string):
+    character_dict = {}
+    # First time scan of string
+    for character in string:
+        if character in character_dict:
+            character_dict[character] += 1
+        else:
+            character_dict[character] = 1
+    # Second scan looking for index of non-repeated character
+    for key, value in character_dict.items():
+        if value == 1:
+            for indx in range(len(string)):
+                if string[indx] == key:
+                    return indx
+    return -1
