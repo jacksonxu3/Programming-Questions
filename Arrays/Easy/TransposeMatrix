@@ -1,0 +1,23 @@
+# Transpose Matrix
+
+'''
+Given nested arrays representing a matrix, return the transpose of the matrix.
+'''
+
+# Runtime of O(n*m), where n = number of rows, m = number of columns
+def transposeMatrix(matrix):
+    # Dimensions of the original matrix
+    # Reverse dimensions of transpose
+    num_rows = len(matrix)
+    num_cols = len(matrix[0])
+    toReturn = []
+    # For every column in the original matrix,
+    # append a new row to the transpose
+    for _ in range(num_cols):
+        toReturn.append([])
+    # Iterate over every element in the matrix,
+    # place it in the transpose location
+    for row in range(num_rows):
+        for col in range(num_cols):
+            toReturn[col].append(matrix[row][col])
+    return toReturn
