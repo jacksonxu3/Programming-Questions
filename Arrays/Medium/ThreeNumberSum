@@ -1,0 +1,27 @@
+# Three Number Sum
+
+'''
+Given an array of positive integers, return an array containing triplet 
+arrays, which are arrays containing three numbers that add up to the 
+target-sum. Make sure the numbers and triplets are ordered. 
+'''
+
+# Optimal solution, O(n^2)
+def threeNumberSum(array, targetSum):
+    toReturn = []
+    array.sort()
+    # iterate over the array, and scan only what is in front
+    for indx in range(0, len(array)-1):
+        indx_small = indx + 1
+        indx_large = len(array) - 1
+        while indx_small < indx_large:
+            sum = array[indx] + array[indx_small] + array[indx_large]
+            if sum == targetSum:
+                toReturn.append([array[indx], array[indx_small], array[indx_large]])
+                indx_small += 1
+                indx_large -= 1
+            elif sum < targetSum:
+                indx_small += 1
+            elif sum > targetSum:
+                indx_large -= 1
+    return toReturn
