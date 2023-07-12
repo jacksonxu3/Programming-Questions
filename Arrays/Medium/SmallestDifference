@@ -1,0 +1,31 @@
+# Smallest Difference
+
+'''
+Given two arrays, return an array containing a value from array1 and
+a value form array2 such that they have the smallest absolute value
+difference. The value from array1 should be first in the array and
+the value from array2 should be second in the array. 
+'''
+
+Runtime of O(nlog n + mlog m), where n and m are the lengths of the arrays
+def smallestDifference(arrayOne, arrayTwo):
+    arrayOne.sort()
+    arrayTwo.sort()
+    indx_one = 0
+    indx_two = 0
+    smallest_diff = abs(arrayOne[indx_one] - arrayTwo[indx_two])
+    toReturn = [arrayOne[indx_one], arrayTwo[indx_two]]
+    # Don't check all combinations, rather only pull the smaller number
+    # up closer to larger number at every iteration to try and get closer.
+    while (indx_one < len(arrayOne)) and (indx_two < len(arrayTwo)):
+        diff = abs(arrayOne[indx_one] - arrayTwo[indx_two])
+        if diff < smallest_diff:
+            smallest_diff = diff
+            toReturn = [arrayOne[indx_one], arrayTwo[indx_two]]
+        if arrayOne[indx_one] == arrayTwo[indx_two]:
+            return toReturn
+        elif arrayOne[indx_one] < arrayTwo[indx_two]:
+            indx_one += 1
+        elif arrayOne[indx_one] > arrayTwo[indx_two]:
+            indx_two += 1
+    return toReturn
