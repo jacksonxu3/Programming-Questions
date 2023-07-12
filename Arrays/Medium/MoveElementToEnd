@@ -1,0 +1,23 @@
+# Move Element to End
+
+'''
+Given an array of integers, modify the array in-place such that 
+all instances of the element toMove are placed at the end of the list. 
+Final order of the array does not matter. 
+'''
+
+# Runtime of O(n)
+def moveElementToEnd(array, toMove):
+    indx = 0
+    swap_indx = len(array) - 1
+    # Keep track of which index at the end can be switched
+    while (swap_indx >= 0) and (array[swap_indx] == toMove):
+        swap_indx -= 1
+    while indx < swap_indx:
+        if array[indx] == toMove:
+            array[indx] = array[swap_indx]
+            array[swap_indx] = toMove
+        while (array[swap_indx] == toMove):
+            swap_indx -= 1
+        indx += 1
+    return array
