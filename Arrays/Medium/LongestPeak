@@ -1,0 +1,40 @@
+# Longest Peak
+
+'''
+Given an array, return the length of the longest peak in the 
+array. A peak is the place where the integers to the left and right
+of it are less than it. A peak needs at least three integers to form.
+'''
+
+# Runtime of O(n)
+def longestPeak(array):
+    longest = 0
+
+    # Scan every index to see if it is a peak
+    for indx in range(len(array)):
+        curr_peak = 0
+        left_indx = indx - 1
+        right_indx = indx + 1
+
+        # Out of bounds
+        if (left_indx < 0) or (right_indx >= len(array)):
+            continue
+
+        # Check to see if the index is a peak
+        if array[indx] > array[left_indx]:
+            if array[indx] > array[right_indx]:
+                curr_peak = 1
+
+                # See how long each side of the peak is
+                while (left_indx >= 0) and (array[left_indx+1] > array[left_indx]):
+                    curr_peak += 1
+                    left_indx -= 1
+                while (right_indx < len(array)) and (array[right_indx-1] > array[right_indx]):
+                    curr_peak += 1
+                    right_indx += 1
+
+        # Keep track of longest peak and reset for next iteration
+        longest = max(curr_peak, longest)
+        curr_peak = 0
+        
+    return longest
