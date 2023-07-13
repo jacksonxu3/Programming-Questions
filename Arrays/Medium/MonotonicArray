@@ -1,0 +1,27 @@
+# Monotonic Array
+
+'''
+Given an array of integers, return if the array is monotonic,
+which means that it is sorted in either descending or ascending order.
+'''
+
+# Runtime of O(n)
+def isMonotonic(array):
+    for indx in range(len(array)-1):
+        if array[indx] < array[indx+1]:
+            return increasing(array)
+        elif array[indx] > array[indx+1]:
+            return decreasing(array)
+    return True
+
+def decreasing(array):
+    for indx in range(len(array)-1):
+        if array[indx] < array[indx+1]:
+            return False
+    return True
+
+def increasing(array):
+    for indx in range(len(array)-1):
+        if array[indx] > array[indx+1]:
+            return False
+    return True
