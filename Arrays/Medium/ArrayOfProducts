@@ -1,0 +1,32 @@
+# Array of Products
+
+'''
+Given an array of integers, return an array where the value at an
+index is the product of all the other original values. 
+'''
+
+# Runtime of O(n)
+def arrayOfProducts(array):
+    toReturn = [1 for _ in range(len(array))]
+
+    # Keep track of products to the left and right of each index
+    left = [1 for _ in range(len(array))]
+    right = [1 for _ in range(len(array))]
+    left_prod = 1
+    right_prod = 1
+
+    # Left side products
+    for left_indx in range(len(array)):
+        left[left_indx] = left_prod
+        left_prod = left_prod * array[left_indx]
+
+    # Right side products
+    for right_indx in reversed(range(len(array))):
+        right[right_indx] = right_prod
+        right_prod = right_prod * array[right_indx]
+
+    # Calculate product at each index
+    for indx in range(len(array)):
+        toReturn[indx] = left[indx] * right[indx]
+
+    return toReturn
