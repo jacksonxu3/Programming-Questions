@@ -1,0 +1,25 @@
+# First Duplicate Value
+
+'''
+Given an array, return the first value that has a duplicate.
+'''
+
+# Runtime of O(n)
+def firstDuplicateValue(array):
+    visited = set()
+    for value in array:
+        if value in visited:
+            return value
+        else:
+            visited.add(value)
+    return -1
+
+# Space Complexity of O(1)
+def firstDuplicateValueImproved(array):
+    for value in array:
+        ab = abs(value)
+        check = array[ab - 1]
+        if check < 0:
+            return ab
+        array[ab - 1] = check * -1
+    return -1
