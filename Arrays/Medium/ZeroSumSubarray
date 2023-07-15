@@ -1,0 +1,27 @@
+# Zero Sum Subarray
+
+'''
+Given an array of integers, return if there is a subarray in the
+array where the sum of every element is 0. 
+'''
+
+# Runtime of O(n)
+def zeroSumSubarray(nums):
+
+    # Keep track of sums we have calculated
+    sums = set()
+    sums.add(0)
+
+    # Keep a total running sum 
+    curr_sum = 0
+
+    for num in nums:
+        curr_sum += num
+
+        # If we've seen the number, it means there is a zero sum path
+        # from the first time we saw the number and current 'num'
+        if curr_sum in sums:
+            return True
+        # Otherwise add the number to the set
+        sums.add(curr_sum)
+    return False
