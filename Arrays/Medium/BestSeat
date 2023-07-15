@@ -1,0 +1,30 @@
+# Best Seat
+
+'''
+Given an array of 1's and 0's, that represent a row of seats where
+1 is taken and 0 is not taken, return the index of the best position 
+to sit in such that there is the most amount of space on your left
+and right. If there is a tie, use the lowest index. 
+'''
+
+# Runtime of O(n)
+def bestSeat(seats):
+    # Keep track of the best spot and the current spot
+    best_indx = 0
+    best_spots = 0
+    curr_indx = 0
+    curr_run = 0
+
+    for indx in range(len(seats)):
+        if seats[indx] == 0:
+            curr_run += 1
+        else:
+            if curr_run > best_spots:
+                best_spots = curr_run
+                best_indx = curr_indx
+            curr_run = 0
+            curr_indx = indx + 1
+    if best_indx == 0:
+        return -1
+    # We use (best_spots-1) in order to round down on even cases
+    return best_indx + ((best_spots-1)//2)
