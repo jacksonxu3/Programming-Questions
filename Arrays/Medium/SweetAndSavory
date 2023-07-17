@@ -33,7 +33,7 @@ def sweetAndSavory(dishes, target):
     return toReturn
 
 # Runtime of O(n)
-def sweetAndSavory(dishes, target):
+def sweetAndSavoryOptimized(dishes, target):
     toReturn = [0, 0]
 
     # Split the dishes into a sweet and savory array
