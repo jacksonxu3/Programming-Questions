@@ -1,0 +1,74 @@
+# Sweet And Savory
+
+'''
+Given an array and a target sum, return two numbers in sorted order 
+that have a sum closest to the target without exceeding the target.
+The returned array should have both a positive and negative number sorted.
+Sweet = Negative, Savory = Positive
+'''
+
+# Runtime of O(n^2)
+def sweetAndSavory(dishes, target):
+    toReturn = [0, 0]
+    best_sum = float('inf')
+    sweet_dishes = []
+    savory_dishes = []
+    for dish in dishes:
+        if dish < 0:
+            sweet_dishes.append(dish)
+        elif dish > 0:
+            savory_dishes.append(dish)
+    if (sweet_dishes == []) or (savory_dishes == []):
+        return toReturn
+    sweet_dishes.sort()
+    savory_dishes.sort()
+    
+    for sweet in sweet_dishes:
+        for savory in savory_dishes:
+            sum = sweet + savory
+            if sum <= target:
+                if abs(target - sum) < abs(target - best_sum):
+                    toReturn = [sweet, savory]
+                    best_sum = sum
+    return toReturn
+
+# Runtime of O(n)
+def sweetAndSavory(dishes, target):
+    toReturn = [0, 0]
+
+    # Split the dishes into a sweet and savory array
+    sweet_dishes = []
+    savory_dishes = []
+    for dish in dishes:
+        if dish < 0:
+            sweet_dishes.append(dish)
+        elif dish > 0:
+            savory_dishes.append(dish)
+    if (sweet_dishes == []) or (savory_dishes == []):
+        return toReturn
+    sweet_dishes.sort(reverse=True)
+    savory_dishes.sort()
+
+    # Try to pull sum closer to target without exceeding each iteration
+    sweet_indx = 0
+    savory_indx = 0
+    best_sum = float('-inf')
+
+    while (sweet_indx < len(sweet_dishes)) and (savory_indx < len(savory_dishes)):
+        sum = sweet_dishes[sweet_indx] + savory_dishes[savory_indx]
+
+        # If sum is less than target, need to go more positive via positive array
+        if sum <= target:
+            
+            # If sum is greater than best_sum without exceeding target, save it
+            if sum > best_sum:
+                best_sum = sum
+                toReturn = [sweet_dishes[sweet_indx], savory_dishes[savory_indx]]
+
+            savory_indx += 1
+
+        # If sum is greater than target, need to go more negative via negative array
+        else:
+            sweet_indx += 1
+
+    return toReturn
