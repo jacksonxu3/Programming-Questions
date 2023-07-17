@@ -1,0 +1,26 @@
+# Majority Element
+
+'''
+Given an unsorted array, without sorting and only using O(1) space,
+return the element in the array that makes up over half the array.
+Assume all input arrays have a majority. 
+'''
+
+# Runtime of O(n)
+def majorityElement(array):
+    toReturn = 0
+    count = 0
+
+    # Keep track of a number as a solution, and increase its
+    # count when seeing it, and decrease it when seeing something
+    # else. At the end, the majority number will have be the one with
+    # at least a count of 1 and marked as the solution. 
+    for num in array:
+        if count == 0:
+            toReturn = num
+            count += 1
+        elif num == toReturn:
+            count += 1
+        else:
+            count -= 1
+    return toReturn
