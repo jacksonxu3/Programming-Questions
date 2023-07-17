@@ -1,0 +1,45 @@
+# Missing Numbers
+
+'''
+Given an unsorted array of unique integers from the range [1, n],
+where n = len(array) + 1, return the two missing numbers of the
+sequence in sorted order.
+'''
+
+# Runtime of O(n)
+def missingNumbers(nums):
+    toReturn = []
+    seen = set()
+    for num in nums:
+        seen.add(num)
+    for num in range(1, len(nums)+3):
+        if num not in seen:
+            toReturn.append(num)
+    return toReturn
+
+# Space Complexity of O(1)
+def missingNumbersOptimized(nums):
+    n = len(nums) + 2
+    total = sum(range(1, n+1))
+    total_nums = 0
+    for num in nums:
+        total_nums += num
+
+    # Find the average of the missing two numbers
+    avg = (total-total_nums)//2
+    # Find the sum of the lower half and upper half of the array
+    left = 0
+    right = 0
+    for num in nums:
+        if num <= avg:
+            left += num
+        else:
+            right += num
+
+    # Find the expected total lower half and upper half,
+    # and subtract that from the actual halves to find the 
+    # two missing numbers
+    total_left = sum(range(1, avg+1))
+    total_right = sum(range(avg+1, n+1))
+                      
+    return [total_left-left, total_right-right]
