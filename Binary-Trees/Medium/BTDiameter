@@ -1,0 +1,31 @@
+# Binary Tree Diameter
+
+'''
+Given a binary tree, return its greatest diemeter. A diameter is
+the length of the path from one node to another node. The path does
+not have to pass through the root. 
+'''
+
+# This is an input class. Do not edit.
+class BinaryTree:
+    def __init__(self, value, left=None, right=None):
+        self.value = value
+        self.left = left
+        self.right = right
+
+# Runtime of O(n)?
+def binaryTreeDiameter(tree):
+    longest = [0]
+    helper(tree, longest)
+    return longest[0]
+
+def helper(tree, longest):
+    if tree is None:
+        return 0
+    left_len = helper(tree.left, longest)
+    right_len = helper(tree.right, longest)
+
+    curr_len = left_len + right_len
+    if curr_len > longest[0]:
+        longest[0] = curr_len
+    return max(left_len, right_len) + 1
