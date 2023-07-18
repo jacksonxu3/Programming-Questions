@@ -1,0 +1,38 @@
+# Min Height BST
+
+'''
+Given an array of integers, return a BST with minimum height.
+'''
+
+Runtime of O(n)
+
+def minHeightBst(array):
+    return minHeightBstHelper(array, 0, len(array)-1)
+
+def minHeightBstHelper(array, min, max):
+    if max < min:
+        return
+    mid = (min + max) // 2
+    node = BST(array[mid])
+    node.left = minHeightBstHelper(array, min, mid-1)
+    node.right = minHeightBstHelper(array, mid+1, max)
+    return node
+    
+
+class BST:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+    def insert(self, value):
+        if value < self.value:
+            if self.left is None:
+                self.left = BST(value)
+            else:
+                self.left.insert(value)
+        else:
+            if self.right is None:
+                self.right = BST(value)
+            else:
+                self.right.insert(value)
