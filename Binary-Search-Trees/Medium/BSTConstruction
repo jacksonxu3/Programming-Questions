@@ -1,0 +1,48 @@
+# BST Construction
+
+'''
+Fill in these three methods for a BST.
+'''
+
+# Runtime of O(log n) for all 3 methods.
+class BST:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+    def insert(self, value):
+        # Write your code here.
+        node = self
+        while True:
+            if node.value >= value:
+                if node.right == None:
+                    node.right = BST(value)
+                    break
+                else:
+                    node = node.right
+            elif node.value < value:
+                if node.left == None:
+                    node.left = BST(value)
+                    break
+                else:
+                    node = node.left
+        # Do not edit the return statement of this method.
+        return self
+
+    def contains(self, value):
+        node = self
+        while node != None:
+            if self.value == value:
+                return True
+            elif value > self.value:
+                node = self.right
+            elif value < self.value:
+                node = self.left
+        return False
+
+    def remove(self, value):
+        # Write your code here.
+        ''' A lot of code. '''
+        # Do not edit the return statement of this method.
+        return self
