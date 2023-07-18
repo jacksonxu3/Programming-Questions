@@ -1,0 +1,34 @@
+# BST Traversal
+
+'''
+Given a BST and an array, traverse the BST and add the nodes
+visited to the array. Three traversals.
+'''
+
+# Runtime of O(n)
+
+def inOrderTraverse(tree, array):
+    if tree == None:
+        return
+    inOrderTraverse(tree.left, array)
+    array.append(tree.value)
+    inOrderTraverse(tree.right, array)
+    return array
+
+
+def preOrderTraverse(tree, array):
+    if tree == None:
+        return
+    array.append(tree.value)
+    preOrderTraverse(tree.left, array)
+    preOrderTraverse(tree.right, array)
+    return array
+
+
+def postOrderTraverse(tree, array):
+    if tree == None:
+        return
+    postOrderTraverse(tree.left, array)
+    postOrderTraverse(tree.right, array)
+    array.append(tree.value)
+    return array
