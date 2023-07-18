@@ -1,0 +1,32 @@
+# Validate BST
+
+'''
+Given a BST, return a boolean representing if it is valid or not.
+'''
+
+# This is an input class. Do not edit.
+class BST:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+# Runtime of O(n)
+def validateBst(tree):
+    min = float('-inf')
+    max = float('inf')
+    queue = [(tree, min, max)]
+    while queue != []:
+        tup = queue.pop(0)
+        node = tup[0]
+        if (node.value < tup[1]) or (node.value >= tup[2]):
+            return False
+        if (node.left != None):
+            if (node.left.value >= node.value):
+                return False
+            queue.append((node.left, tup[1], node.value))
+        if (node.right != None):
+            if (node.right.value < node.value):
+                return False
+            queue.append((node.right, node.value, tup[2]))
+    return True
