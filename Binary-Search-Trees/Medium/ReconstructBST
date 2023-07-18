@@ -1,0 +1,40 @@
+# Reconstruct BST
+
+'''
+Given an array of integers that represent the pre-order traversal
+of a BST, create the original BST. Remember that pre-order means
+to visit a node, then go left, then go right. 
+'''
+
+# This is an input class. Do not edit.
+class BST:
+    def __init__(self, value, left=None, right=None):
+        self.value = value
+        self.left = left
+        self.right = right
+
+
+# Runtime of O(n log n)
+def reconstructBst(preOrderTraversalValues):
+    tree = None
+    for item in preOrderTraversalValues:
+        tree = insert(item, tree)
+    return tree
+
+def insert(value, tree):
+    node = tree
+    if tree == None:
+        return BST(value)
+    while True:
+        if value >= node.value:
+            if node.right == None:
+                node.right = BST(value)
+                return tree
+            else:
+                node = node.right
+        elif value < node.value:
+            if node.left == None:
+                node.left = BST(value)
+                return tree
+            else:
+                node = node.left
