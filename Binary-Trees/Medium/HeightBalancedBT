@@ -1,0 +1,34 @@
+# Height Balanced Binary Tree
+
+'''
+Given a BT, return whether or not the tree is balanced for every node.
+A node is balanced if the height of its left and right subtree are within 1 of each other.
+'''
+
+# This is an input class. Do not edit.
+class BinaryTree:
+    def __init__(self, value, left=None, right=None):
+        self.value = value
+        self.left = left
+        self.right = right
+
+
+# Runtime of O(n)
+def heightBalancedBinaryTree(tree):
+    if tree is None:
+        return True
+    
+    left_height = helper(tree.left)
+    right_height = helper(tree.right)
+    diff = abs(left_height - right_height)
+    
+    left_case = heightBalancedBinaryTree(tree.left)
+    right_case = heightBalancedBinaryTree(tree.right)
+    
+    return (diff <= 1) and left_case and right_case
+
+def helper(tree):
+    if tree is not None:
+        return 1 + max(helper(tree.left), helper(tree.right))
+    return 0
+    
