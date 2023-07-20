@@ -1,0 +1,33 @@
+# Symmetrical Tree
+
+'''
+Given a Binary Tree, return if the entire tree is symmetrical. 
+Which means the left and right side are mirror versions of each other. 
+Not exactly the same, but mirrored.
+'''
+
+# This is an input class. Do not edit.
+class BinaryTree:
+    def __init__(self, value, left=None, right=None):
+        self.value = value
+        self.left = left
+        self.right = right
+
+# Runtime of O(n)
+def mergeBinaryTrees(tree1, tree2):
+    if (tree1 is None) and (tree2 is None):
+        return None
+    else:
+        if (tree1 is not None) and (tree2 is None):
+            node = BinaryTree(tree1.value)
+            node.left = mergeBinaryTrees(tree1.left, None)
+            node.right = mergeBinaryTrees(tree1.right, None)
+        elif (tree1 is None) and (tree2 is not None):
+            node = BinaryTree(tree2.value)
+            node.left = mergeBinaryTrees(None, tree2.left)
+            node.right = mergeBinaryTrees(None, tree2.right)
+        elif (tree1 is not None) and (tree2 is not None):
+            node = BinaryTree(tree1.value + tree2.value)
+            node.left = mergeBinaryTrees(tree1.left, tree2.left)
+            node.right = mergeBinaryTrees(tree1.right, tree2.right)
+    return node
