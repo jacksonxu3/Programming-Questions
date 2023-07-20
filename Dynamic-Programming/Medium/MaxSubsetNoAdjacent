@@ -1,0 +1,54 @@
+# Max Subset No Adjacent
+
+'''
+Given an array of intergers, return a subset array such that none of
+the elements are adjacent.
+'''
+
+# Runtime of O(n)
+def maxSubsetSumNoAdjacent(array):
+    # [75, 105, 120, 75, 90, 135]
+    # 330 // 75 + 120 + 135
+    prev_max = 0
+    curr_max = 0
+    for item in array:
+        skip_prev_item = prev_max
+        prev_max = curr_max
+        curr_max = max(curr_max, skip_prev_item + item)
+    return curr_max
+
+# Example and Logic
+'''
+[75, 105, 120, 75, 90, 135]
+330   (75 + 120 + 135)
+
+75
+var1 = 0 (var2)
+var2 = 0 (var3)
+var3 = 75 (max 0 0+75)
+
+105
+var1 = 0
+var2 = 75
+var3 = 105 (max 75 0+105)
+
+120
+var1 = 75
+var2 = 105
+var3 = 195 (max 105 75+120)
+
+75
+var1 = 105
+var2 = 195
+var3 = 195 (max 195 105+75)
+
+90
+var1 = 195
+var2 = 195
+var3 = 285 (max 195 195+90)
+
+135
+var1 = 195
+var2 = 285
+var3 = 330 (max 285 195+135)
+'''
