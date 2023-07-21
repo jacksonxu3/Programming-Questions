@@ -1,0 +1,28 @@
+# Spare Change
+
+'''
+Given a target n and an array of coin values, return the number of ways
+to generate n using the coin values. The number of coins are infinite.
+'''
+
+# Runtime of ?
+def numberOfWaysToMakeChange(n, denoms):
+    # Recursive
+    if (n == 0):
+        return 1
+    elif n < 0 or not denoms:
+        return 0
+    use = numberOfWaysToMakeChange(n-denoms[0], denoms)
+    skip = numberOfWaysToMakeChange(n, denoms[1:])
+    return use + skip
+
+# Runtime of O(nd), where n is the target and d is the length of the coin array
+def numberOfWaysToMakeChangeIter(n, denoms):
+    # Iterative
+    ways_to_make_num = [0 for amount in range(n+1)]
+    ways[0] = 1
+    for coin in denoms:
+        for number in range(n+1):
+            if coin <= number:
+                ways_to_make_num[number] += ways_to_make_num[number - coin]
+    return ways_to_make_num[n]
