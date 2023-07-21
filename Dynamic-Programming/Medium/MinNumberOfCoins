@@ -1,0 +1,41 @@
+# Minimum Number of Coins
+
+'''
+Given a target sum and an array of coins, return the minimum number
+of coins required to create the target sum. The number of times you 
+can use each coin is infinite. 
+'''
+
+# Runtime of ?
+# Recursion
+def minNumberOfCoinsForChange(n, denoms):
+    minimum = helper(n, denoms, 0)
+    if minimum == float('inf'):
+        return -1
+    else:
+        return minimum
+
+def helper(n, denoms, count):
+    # Base case
+    if n == 0:
+        return count
+    elif n < 0 or not denoms:
+        return float('inf')
+    # Recursive case
+    use = helper(n-denoms[0], denoms, count+1)
+    skip = helper(n, denoms[1:], count)
+    return min(use, skip)
+
+# Runtime of O(nd), where n is the target and d is the number of coins
+# Iteration
+def minNumberOfCoinsForChangeIter(n, denoms):
+    min_coins_for_value = [float('inf') for _ in range(0, n+1)]
+    min_coins_for_value[0] = 0
+    for coin in denoms:
+        for value in range(0, n+1):
+            if coin <= value:
+                min_coins_for_value[value] = min(min_coins_for_value[value], min_coins_for_value[value-coin]+1)
+    if min_coins_for_value[n] == float('inf'):
+        return -1
+    else:
+        return min_coins_for_value[n]
