@@ -1,0 +1,17 @@
+# Graph Traversal
+
+'''
+Given a width and a height representing a rectangular grid, return the number 
+of ways to get from the top left to the bottom right. You can only move
+down and right. 
+'''
+
+# Runtime of O(n^(n+m)), where n and m are the dimensions of the graph
+def numberOfWaysToTraverseGraph(width, height):
+    if width == 1 and height == 1:
+        return 1
+    elif width < 1 or height < 1:
+        return 0
+    right = numberOfWaysToTraverseGraph(width-1, height)
+    down = numberOfWaysToTraverseGraph(width, height-1)
+    return right + down
