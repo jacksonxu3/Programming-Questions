@@ -1,0 +1,17 @@
+# Kadane's Algorithm
+
+'''
+Given an array of integers, return the maximum sum of all 
+possible continuous subarrays.
+'''
+
+# Runtime of O(n)
+def kadanesAlgorithm(array):
+    testing = float('-inf')
+    maximum = float('-inf')
+    for num in array:
+        print(f'testing: {testing}')
+        print(f'maximum: {maximum}')
+        testing = max(num, testing + num)
+        maximum = max(maximum, testing)
+    return maximum
