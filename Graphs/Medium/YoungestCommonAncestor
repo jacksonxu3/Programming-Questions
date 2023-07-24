@@ -1,0 +1,26 @@
+# Youngest Common Ancestor
+
+'''
+Given a tree, where each node has a pointer to its parent, return the 
+youngest parent of the two input nodes. 
+'''
+
+# This is an input class. Do not edit.
+class AncestralTree:
+    def __init__(self, name):
+        self.name = name
+        self.ancestor = None
+
+# Runtime of O(h), where h = height of the tree
+def getYoungestCommonAncestor(topAncestor, descendantOne, descendantTwo):
+    arr1 = set()
+    node = descendantOne
+    while node != None:
+        arr1.add(node)
+        node = node.ancestor
+    node = descendantTwo
+    while node != None:
+        if node in arr1:
+            return node
+        else:
+            node = node.ancestor
