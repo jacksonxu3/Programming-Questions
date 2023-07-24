@@ -1,0 +1,33 @@
+# River Sizes
+
+'''
+Given a two-dimensional array filled with 0's and 1's, return the 
+lengths of all of the rivers, denoted by 1's. 
+'''
+
+# Runtime of O(nm), where n and m are the dimensions of the matrix
+def riverSizes(matrix):
+    toReturn = []
+    visited = set()
+    
+    for row in range(len(matrix)):
+        for col in range(len(matrix[0])):
+            if (row, col) not in visited and matrix[row][col] == 1:
+                length = dfs(matrix, row, col, visited)
+                toReturn.append(length)
+    return toReturn
+
+def dfs(matrix, row, col, visited):
+    if (row < 0) or (row >= len(matrix)):
+        return 0
+    if (col < 0) or (col >= len(matrix[0])):
+        return 0
+    if ((row, col) in visited) or (matrix[row][col] == 0):
+        return 0
+
+    visited.add((row, col))
+    length = 0
+    directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+    for vert, horiz in directions:
+        length += dfs(matrix, row+vert, col+horiz, visited)
+    return 1+ length
