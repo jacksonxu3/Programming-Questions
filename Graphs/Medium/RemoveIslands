@@ -1,0 +1,42 @@
+ # Remove Islands
+
+'''
+Given a 2-dimensional array, where 1 represents land and 0 represents water, 
+turn all islands into water. A piece of land is not an island if any part 
+of it is touching the border of the matrix.
+'''
+
+# Runtime of O(mn), where m and n are dimensions of the matrix
+def removeIslands(matrix):
+    visited = set()
+    for row in range(len(matrix)):
+        for col in range(len(matrix[0])):
+            if (matrix[row][col] == 1):
+                land = set()
+                island = [True]
+                dfs(matrix, row, col, visited, land, island)
+                if island[0]:
+                    for item in land:
+                        matrix[item[0]][item[1]] = 0
+    return matrix
+    
+def dfs(matrix, row, col, visited, land, island):
+    if (row < 0) or (row >= len(matrix)):
+        return 
+    if (col < 0) or (col >= len(matrix[0])):
+        return
+    if (matrix[row][col] == 0) or ((row, col) in visited):
+        return
+
+    visited.add((row, col))
+    if (matrix[row][col] == 1):
+        land.add((row, col))
+        if (row == 0) or (row == len(matrix) - 1):
+            island[0] = False
+        if (col == 0) or (col == len(matrix[0]) - 1):
+            island[0] = False
+        dfs(matrix, row+1, col, visited, land, island)
+        dfs(matrix, row-1, col, visited, land, island)
+        dfs(matrix, row, col+1, visited, land, island)
+        dfs(matrix, row, col-1, visited, land, island)
+    return
