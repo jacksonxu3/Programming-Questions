@@ -1,0 +1,48 @@
+# Minimum Passes of Matrix
+
+'''
+Given a matrix of positive and negative values, a node can be converted
+into a positive integer if at least one of its neighbors is positive. 
+0 is neither negative nor positive. Return the amount of iterations it will
+take to convert all integers to positive. If it is not possible, return -1.
+'''
+
+# Runtime of O(mn), where m and n are dimensions of the matrix
+def minimumPassesOfMatrix(matrix):
+    visited = set()
+    queue = []
+    next_queue = []
+    
+    for row in range(len(matrix)):
+        for col in range(len(matrix[0])):
+            if matrix[row][col] > 0:
+                node = (row, col)
+                next_queue.append(node)
+                visited.add(node)
+
+    # Use two queues, one for the current iteration, and one for the next one
+    passes = -1
+    while next_queue != []:
+        passes += 1
+        queue = next_queue
+        next_queue = []
+        while queue != []:
+            item = queue.pop(0)
+            row = item[0]
+            col = item[1]
+            neighbors = [(row+1, col), (row-1, col), (row, col+1), (row, col-1)]
+            for neighbor in neighbors:
+                if (neighbor not in visited):
+                    if (neighbor[0] >= 0) and (neighbor[0] < len(matrix)):
+                        if (neighbor[1] >= 0) and (neighbor[1] < len(matrix[0])):
+                            if matrix[neighbor[0]][neighbor[1]] != 0:
+                                next_queue.append(neighbor)
+                visited.add(neighbor)
+
+    # Check to see if there is any negative node left
+    for row in range(len(matrix)):
+        for col in range(len(matrix[0])):
+            if (row, col) not in visited:
+                return -1
+
+    return passes
