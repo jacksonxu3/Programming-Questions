@@ -1,0 +1,35 @@
+# Two Colorable
+
+'''
+Given a graph in the form of an adjacency list, return if it is two colorable.
+'''
+
+# Runtime of O(n)
+def twoColorable(edges):
+    set1 = set()
+    set2 = set()
+    set1.add(0)
+    colored = set()
+    queue = [0]
+    while len(queue) > 0:
+        node = queue.pop(0)
+        
+        if node in set1:
+            for edge in edges[node]:
+                if edge in set1:
+                    return False
+                set2.add(edge)
+                if edge not in colored:
+                    colored.add(edge)
+                    queue.append(edge)
+        
+        elif node in set2:
+            for edge in edges[node]:
+                if edge in set2:
+                    return False
+                set1.add(edge)
+                if edge not in colored:
+                    colored.add(edge)
+                    queue.append(edge)
+
+    return True
