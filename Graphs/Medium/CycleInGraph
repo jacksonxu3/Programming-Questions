@@ -1,0 +1,26 @@
+# Cycle in Graph
+
+'''
+Given an adjacency list to represent a graph, return if 
+there is a cycle in the graph.
+'''
+
+# Runtime of O(n)
+def cycleInGraph(edges):
+    for node in range(len(edges)):
+        visited = set()
+        has_cycle = dfs(edges, node, visited)
+        if has_cycle:
+            return True
+    return False
+
+def dfs(edges, node, visited):
+    if node in visited:
+        return True
+    visited.add(node)
+    for neighbor in edges[node]:
+        has_cycle = dfs(edges, neighbor, visited)
+        if has_cycle:
+            return True
+    visited.remove(node)
+    return False
