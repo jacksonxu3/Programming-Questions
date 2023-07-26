@@ -1,0 +1,28 @@
+# Valid Starting City
+
+'''
+Given an array of distances from one city to the next, the amount of
+fuel in one city, and the miles per gallon your car can travel, return
+the starting city that will allow you to run a loop through all of the
+cities. The amount of gas will allow you to end the loop with 0 fuel left.
+'''
+
+# Runtime of O(n)
+def validStartingCity(distances, fuel, mpg):
+    num_cities = len(distances)
+
+    # Make new array, representing the extra distance you can travel after refueling
+    additional_dist = []
+    for indx in range(num_cities):
+        additional_dist.append(fuel[indx] * mpg)
+
+    # Starting city 0 with 0 fuel, and allowing your fuel to go negative after traveling, 
+    # traverse through each city and keep track of the fuel you enter each city with.
+    # The city with the lowest fuel will be the solution, because you will end the loop
+    # with 0 fuel. 
+    enter_travel = [0]
+    for indx in range(0, num_cities-1):
+        next = enter_travel[indx] + additional_dist[indx]- distances[indx]
+        enter_travel.append(next)
+
+    return enter_travel.index(min(enter_travel))
