@@ -1,0 +1,34 @@
+# Remove Kth Node from End
+
+'''
+Given a linked list and an integer k, remove the kth node from the end.
+'''
+
+# This is an input class. Do not edit.
+class LinkedList:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+# Runtime of O(n)
+def removeKthNodeFromEnd(head, k):
+    indx = 0
+    end_node = head
+    k_node = head
+    
+    while indx < k:
+        indx += 1
+        end_node = end_node.next
+
+    if end_node is None:
+        head.value = head.next.value
+        head.next = head.next.next
+        return None
+
+    # Need to stop at the node right before kth from end
+    while end_node.next is not None:
+        end_node = end_node.next
+        k_node = k_node.next
+        
+    k_node.next = k_node.next.next
+    return None
