@@ -1,0 +1,24 @@
+# Task Assignment
+
+'''
+Given an integer k to represent the number of workers, and an array of 
+integers representing the length of each task, return an array containing
+two tasks for each worker such that the amount of time taken to complete
+all tasks is minimal. 
+'''
+
+# Runtime of O(n log n)
+def taskAssignment(k, tasks):
+    toReturn = []
+    enum = []
+    for num_task, length_task in enumerate(tasks):
+        enum.append((num_task, length_task))
+    enum.sort(key= lambda x: x[1])
+    
+    first = 0
+    last = len(tasks) - 1
+    for worker in range(k):
+        toReturn.append([enum[first][0], enum[last][0]])
+        first += 1
+        last -= 1
+    return toReturn
