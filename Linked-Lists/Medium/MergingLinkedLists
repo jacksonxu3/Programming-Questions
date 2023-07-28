@@ -1,0 +1,44 @@
+# Merging Linked Lists
+
+'''
+Given two linked lists, return at which node they both contain the same
+linked list. If they don't merge, return None.
+'''
+
+# This is an input class. Do not edit.
+class LinkedList:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+# Runtime of O(m+n), where m and n are the length of the linked lists
+def mergingLinkedLists(linkedListOne, linkedListTwo):
+    node1 = linkedListOne
+    len1 = 0
+    node2 = linkedListTwo
+    len2 = 0
+    while node1 is not None:
+        len1 += 1
+        node1 = node1.next
+    while node2 is not None:
+        len2 += 1
+        node2 = node2.next
+
+    node1 = linkedListOne
+    node2 = linkedListTwo
+    skips = len1 - len2
+    if skips >= 0:
+        for _ in range(skips):
+            node1 = node1.next
+    elif skips < 0:
+        for _ in range(abs(skips)):
+            node2 = node2.next
+
+    while node1 is not None:
+        if node1 == node2:
+            return node1
+        else:
+            node1 = node1.next
+            node2 = node2.next
+            
+    return None
