@@ -1,0 +1,48 @@
+# Sum of Linked Lists
+
+'''
+Given two linked lists, where the first node is the least significant digit
+and the last node is the most significant digit, return a new linked list
+that is the sum of these two. 
+'''
+
+# This is an input class. Do not edit.
+class LinkedList:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+# Runtime of O(n)
+def sumOfLinkedLists(linkedListOne, linkedListTwo):
+    node1 = linkedListOne
+    node2 = linkedListTwo
+    first = LinkedList(None)
+    node = first
+    carry = 0
+    val1 = 0
+    val2 = 0
+    sum = 0
+    while node1 or node2 or carry:
+        
+        if node1 is not None:
+            val1 = node1.value
+            node1 = node1.next
+        else:
+            val1 = 0
+
+        if node2 is not None:
+            val2 = node2.value
+            node2 = node2.next
+        else:
+            val2 = 0
+
+        sum = val1 + val2 + carry
+        carry = sum // 10
+        sum = sum % 10
+        node.next = LinkedList(sum)
+        
+        node = node.next
+
+    return first.next
+        
+        
