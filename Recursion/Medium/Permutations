@@ -1,0 +1,27 @@
+# Permutations
+
+'''
+Given an array, return all of the possible permutations of the elements.
+'''
+
+# Runtime of O(n*n!)
+def getPermutations(array):
+    permutations = []
+    helper(0, array, permutations)
+    return permutations
+
+# Logic is that we will simply be swapping elements around to get new permutations
+def helper(swap_indx, array, permutations):
+
+    # If the swap index is the last element, then add the array to the permutation
+    if (swap_indx == len(array) - 1):
+        permutations.append(array[:])
+        return
+
+    # Iterate over the remaining elements in the list, and
+    # recursively swap each element with the swap_indx element.
+    for indx in range(swap_indx, len(array)):
+        array[swap_indx], array[indx] = array[indx], array[swap_indx]
+        helper(swap_indx+1, array, permutations)
+        array[swap_indx], array[indx] = array[indx], array[swap_indx]
+            
