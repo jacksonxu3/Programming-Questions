@@ -1,0 +1,21 @@
+# Powerset
+
+'''
+Given an array, return all subsets that exist inside of it.
+'''
+
+# Runtime of O(n*(2^n))
+# Space complexity of O(n*(2^n))
+def powerset(array):
+    toReturn = [[]]
+
+    # Iterate over every element in the array
+    for element in array:
+
+        # Iterate over every element in the currently known subsets,
+        # and add the current element into it for a new subset
+        for indx in range(len(toReturn)):
+            curr = toReturn[indx]
+            toReturn.append(curr + [element])
+
+    return toReturn
