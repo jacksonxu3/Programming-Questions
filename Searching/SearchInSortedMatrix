@@ -1,0 +1,26 @@
+# Search In Sorted Matrix
+
+'''
+Given a matrix, where the rows and columns are sorted,
+return the coordinates of the target value. If it is not
+in the matrix, return -1 in the coordinates.
+'''
+
+# Runtime of O(m+n), where m and n are the dimensions of the matrix
+def searchInSortedMatrix(matrix, target):
+
+    # Start in either the top right or bottom left corner
+    # to allow for both > and < cases. 
+    row = len(matrix) - 1
+    col = 0
+
+    # While in bounds
+    while (row >= 0) and (col < len(matrix[0])):
+        if matrix[row][col] > target:
+            row -= 1
+        elif matrix[row][col] < target:
+            col += 1
+        elif matrix[row][col] == target:
+            return [row, col]
+
+    return [-1, -1]
