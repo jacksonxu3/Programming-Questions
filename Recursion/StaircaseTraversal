@@ -1,0 +1,35 @@
+# Staircase Traversal
+
+'''
+Given a height of a staircase and the maximum number of staircase steps
+you can traverse at once, return the number of different ways you can
+walk up to the top of the stairs. 
+'''
+
+# Runtime of O(mn), where m is the height and n is the maximum steps you can take at once
+def staircaseTraversal(height, maxSteps):
+    # Memoize to minimize redundant calculations
+    dict = {
+        0: 1,
+        1: 1,
+    }
+    return helper(height, maxSteps, dict)
+
+def helper(height, maxSteps, dict):
+
+    # Return memoized data
+    if height in dict:
+        return dict[height]
+    # If steps go negative, then that traversal is invalid
+    if height < 0:
+        return 0
+
+    toReturn = 0
+    # Iterate though all step sizes you can take
+    # and subtract it from the current height
+    for step in range(1, maxSteps+1):
+        toReturn += helper(height-step, maxSteps, dict)
+    # Memoize the result for larger height cases
+    dict[height] = toReturn
+
+    return toReturn
