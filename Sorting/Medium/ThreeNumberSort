@@ -1,0 +1,34 @@
+# Three Number Sort
+
+'''
+Given an unsorted array of integers and a three element array, 
+sort the unsorted array in the order specified by the three
+element array. Assume that the elements of the unsorted array 
+only consist of the three elements in the three element array.
+'''
+
+# Runtime of O(n)
+def threeNumberSort(array, order):
+
+    # Get the number of times each element shows up in array
+    nums = dict()
+    for item in order:
+        nums[item] = 0
+
+    for item in array:
+        nums[item] += 1
+
+    # Iterate through the original array, and place the
+    # numbers up to the count in the given index
+    print(nums)
+    indx = 0
+    for item in order:
+        count = 1
+        while count <= nums[item]:
+            array[indx] = item
+            indx += 1
+            count += 1
+
+    return array
+        
+        
