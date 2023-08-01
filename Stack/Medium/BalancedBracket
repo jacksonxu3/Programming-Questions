@@ -1,0 +1,37 @@
+# Balanced Bracket
+
+'''
+Given a string containing bracket characters, ()[]{}, 
+return if the string is a valid expression. 
+'''
+
+# Runtime of O(n)
+def balancedBrackets(string):
+
+    # Define the bracket characters, and which 
+    # bracket characters are paired together. 
+    brackets = {"(", ")", "[", "]", "{", "}"}
+    pairs = {
+        "(": ")",
+        "[": "]",
+        "{": "}",
+    }
+
+    # Iterate through every character, adding the start
+    # of an expression to the stack. If we find the end 
+    # of an expression, pop the latest start character, 
+    # and check to see if its valid character. 
+    stack = []
+    for char in string:
+        if char not in brackets: 
+            continue
+        else:
+            if char in pairs:
+                stack.append(char)
+            else:
+                if len(stack) == 0:
+                    return False
+                symbol = stack.pop()
+                if char != pairs[symbol]:
+                    return False
+    return len(stack) == 0
