@@ -1,0 +1,32 @@
+# Best Digits
+
+'''
+Given a string representing a number and the number of digits to remove,
+return a new string representing the largest possible number after
+removing the number of digits specified.
+'''
+
+# Runtime of O(n)
+# To make the largest number, we want to push the largest number to the 
+# most significant digit location. After doing this, we want to do the 
+# same to any digits that follow. 
+def bestDigits(number, numDigits):
+    stack = []
+
+    # Iterate through every digit
+    for digit in number:
+        # We want to push any higher digits to as high as possble in the stack
+        while numDigits > 0 and stack and digit > stack[-1]:
+            stack.pop()
+            numDigits -= 1
+        # Always append 
+        stack.append(digit)
+
+    # If we iterate through everything and there are still digits to remove,
+    # remove last digits, as the the greatest digits are at the front already
+    while numDigits > 0:
+        stack.pop()
+        numDigits -= 1
+
+    # Use join function to turn array into string
+    return "".join(stack)
