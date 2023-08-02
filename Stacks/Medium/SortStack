@@ -1,0 +1,26 @@
+# Sort Stack 
+
+'''
+Given an array representing a stack, recursively sort it.
+'''
+
+# Runtime of O(n^2)
+# To do this recursively, we can linearly remove one element from the
+# array at a time, and then place each element stack in sorted order.
+# This can be done by doing another linear scan of the current stack 
+# and placing the element in the right place. 
+
+def sortStack(stack):
+    if stack:
+        item = stack.pop()
+        sortStack(stack)
+        insert(stack, item)
+    return stack
+
+def insert(stack, item):
+    if not stack or stack[-1] <= item:
+        stack.append(item)
+    else:
+        replace = stack.pop()
+        insert(stack, item)
+        stack.append(replace)
