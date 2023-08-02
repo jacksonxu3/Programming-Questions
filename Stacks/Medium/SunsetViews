@@ -1,0 +1,33 @@
+# Sunset Views
+
+'''
+Given an array of buildings where each integer represents their heights
+and the direction of the sun, return indices of the buildings that can
+see the sun. 
+'''
+
+# Runtime of O(n)
+def sunsetViews(buildings, direction):
+
+    # Direction to start scanning based on sun position
+    if direction == "EAST":
+        indx = len(buildings) - 1
+        next = -1
+    elif direction == "WEST":
+        indx = 0
+        next = 1
+
+    # Keep track of tallest building, and append any
+    # taller buildings and mark it as new tallest
+    toReturn = []
+    tallest = 0
+    for _ in range(len(buildings)):
+        if buildings[indx] > tallest:
+            toReturn.append(indx)
+            tallest = buildings[indx]
+        indx += next
+
+    if direction == "WEST":
+        return toReturn
+    elif direction == "EAST":
+        return toReturn[::-1]
