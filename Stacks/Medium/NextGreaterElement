@@ -1,0 +1,32 @@
+# Next Greater Element
+
+'''
+Given an array of integers, return a new array of integers, such that 
+at every index of the new array, contains the next greater element in 
+the original array at the same index. Treat arrays as circular. If an 
+element is greatest, mark it as -1. 
+'''
+
+# Runtime of O(n)
+def nextGreaterElement(array):
+    toReturn = [-1] * len(array)
+    stack = []
+
+    # Have to do two loops, to treat the array as circular
+    for num in range(2*len(array)):
+        indx = num % len(array)
+
+        # Use the current index and compare it to the previous
+        # indices that are in the stack, as those that are still
+        # in the stack have not yet seen their next greatest element. 
+        # We can stop going through the stack once we find an element that
+        # is greater than our current element, as the elements further back
+        # must be larger, as they too are still in the stack.
+        while len(stack) > 0 and array[stack[-1]] < array[indx]:
+            prev = stack.pop()
+            toReturn[prev] = array[indx]
+
+        # Stack the current index, for the next iteration
+        stack.append(indx)
+
+    return toReturn
