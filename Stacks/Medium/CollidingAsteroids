@@ -1,0 +1,44 @@
+# Colliding Asteroids
+
+'''
+Given an array of integers, representing asteroids and the 
+direction that they are traveling, return the leftover asteroids
+after all of the collisions. If two asteroids collide, the bigger
+one is destroyed. If they are equal size, both are destroyed. 
+'''
+
+# Runtime of O(n)
+def collidingAsteroids(asteroids):
+
+    stack = []
+
+    # Iterate through each asteroid, and add it to the stack
+    for item in asteroids:
+        stack.append(item)
+
+        # If it is going left, then go into cases. 
+        # If it is going right, then simply move on to the next. 
+        if item < 0:
+
+            # While there are still asteroids to the left
+            while len(stack) > 1:
+
+                # If the left asteroid is also moving left, they can't collide
+                if stack[-2] < 0:
+                    break
+
+                # If the left asteroid is smaller, break the left asteroid
+                elif abs(item) > stack[-2]:
+                    stack.pop(-2)
+
+                # If the left asteroid is bigger, break the current asteroid
+                elif abs(item) < stack[-2]:
+                    stack.pop()
+                    break
+
+                # If they are both the same size, break both
+                elif abs(item) == stack[-2]:
+                    stack.pop()
+                    stack.pop()
+
+    return stack
