@@ -1,0 +1,41 @@
+# Reverse Polish Notation
+
+'''
+Given an array of expressions, evaluate the expression according
+to reverse polish notation. An example is "1 2 +", which is 
+equivalent to "1 + 2".
+'''
+
+# Runtime of O(n)
+def reversePolishNotation(tokens):
+
+    operators = {'+','-','*','/'}
+    stack = []
+
+    for item in tokens:
+
+        if item not in operators:
+            stack.append(int(item))
+
+        else:
+            if item == '+':
+                second = stack.pop()
+                first = stack.pop()
+                stack.append(first + second)
+
+            elif item == '-':
+                second = stack.pop()
+                first = stack.pop()
+                stack.append(first - second)
+
+            elif item == '*':
+                second = stack.pop()
+                first = stack.pop()
+                stack.append(first * second)
+
+            elif item == '/':
+                second = stack.pop()
+                first = stack.pop()
+                stack.append(int(first/second))
+
+    return stack.pop()
