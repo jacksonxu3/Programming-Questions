@@ -1,0 +1,41 @@
+# Longest Palindrome Substring
+
+'''
+Given a string, return the longest substring in the string. 
+'''
+
+# Runtime of O(n^2)
+def longestPalindromicSubstring(string):
+    indices = [0, 0]
+    for indx in range(len(string)):
+
+        # Even and Odd length cases for the palindromes
+        even = palindromeFinder(string, indx, indx-1)
+        odd = palindromeFinder(string, indx, indx)
+
+        if even[1] - even[0] > indices[1] - indices[0]:
+            indices = even
+        elif odd[1] - odd[0] > indices[1] - indices[0]:
+            indices = odd
+
+    return string[indices[0]:indices[1]+1]
+
+# Helper function to find the start and end indices of the longest 
+# palindrome centered at the given index
+def palindromeFinder(string, indx1, indx2):
+    if string[indx1] != string[indx2]:
+        return [indx1, indx2]
+    
+    left = indx1 - 1
+    right = indx2 + 1
+    if left < 0 or right >= len(string):
+        return [indx1, indx2]
+    
+    while left >= 0 and right < len(string):
+        if string[left] != string[right]:
+            return [left + 1, right - 1]
+        else:
+            left -= 1
+            right += 1
+    return [left + 1, right - 1]
+        
