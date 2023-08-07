@@ -1,0 +1,19 @@
+# Group Anagrams
+
+'''
+Given a list of words, group up words that are anagrams of 
+each others, and return these groups. 
+'''
+
+# Runtime of O(w * n * log n)
+# Space Complexity of O(nw)
+# Where w is number of words, and n is the length of the longest word.
+def groupAnagrams(words):
+    anagrams = dict()
+    for word in words:
+        sort = "".join(sorted(word))
+        if sort in anagrams:
+            anagrams[sort].append(word)
+        else:
+            anagrams[sort] = [word]
+    return list(anagrams.values())
