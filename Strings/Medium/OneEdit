@@ -1,0 +1,45 @@
+# One Edit
+
+'''
+Given two strings, return if you can turn either string into the other
+string with simply one edit. Edits are replacing letters with another 
+letter, deleting a letter, or adding a letter. 
+'''
+
+# Runtime of O(n)
+def oneEdit(stringOne, stringTwo):
+
+    # If the lengths differ by more than one, then needs more than one edit
+    length_one = len(stringOne)
+    length_two = len(stringTwo)
+    if abs(length_one - length_two) > 1:
+        return False
+
+    indx_one = 0
+    indx_two = 0
+    edits = 0
+
+    # Compare through the letters one at a time
+    while indx_one < length_one and indx_two < length_two:
+
+        # If the letters don't match, add one to edit or return
+        if stringOne[indx_one] != stringTwo[indx_two]:
+            if edits >= 1:
+                return False
+            else:
+                edits += 1
+
+            # For the next index, depends on the length of the words
+            if length_one > length_two:
+                indx_one += 1
+                continue
+            elif length_two > length_one:
+                indx_two += 1
+                continue
+
+        # If they are equal length, then add one to both
+        indx_one += 1
+        indx_two += 1
+
+    # return True if we reach the end without editing more than once
+    return True
