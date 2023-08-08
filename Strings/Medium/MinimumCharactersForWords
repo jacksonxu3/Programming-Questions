@@ -1,0 +1,34 @@
+# Minimum Characters For Words
+
+'''
+Given an array of words, return the minimum characters need such
+that every word can individually be generated using the characters.
+'''
+
+# Runtime of O(n * m), where n is the number of words and m is the longest word
+def minimumCharactersForWords(words):
+
+    # Create a dictionary for every word that stores the letters in it
+    letters = {}
+
+    for word in words:
+        curr_letters = {}
+
+        for char in word:
+            if char in curr_letters:
+                curr_letters[char] += 1
+            else:
+                curr_letters[char] = 1
+
+        # Compare the current dictionary to the main dictionary, and 
+        # increase the count of letters when needed
+        for key in curr_letters:
+            if curr_letters[key] > letters.get(key, 0):
+                letters[key] = curr_letters[key]
+
+    # Generate the array to return
+    toReturn = []
+    for char in letters:
+        for count in range(letters[char]):
+            toReturn.append(char)
+    return toReturn
