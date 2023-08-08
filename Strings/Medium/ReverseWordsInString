@@ -1,0 +1,28 @@
+# Reverse Words In String
+
+'''
+Given a string, reverse the order of the words in the string. 
+'''
+
+# Runtime of O(n)
+# Idea is to iterate through the string in reverse, keeping
+# track of the end index of the word as you go towards the start
+# of the string. When encountering a space, add the word to the
+# array and add a space in front of it. Must also account
+# for the end case outside of the iterative loop. 
+def reverseWordsInString(string):
+    length = len(string)
+    end_indx = length
+    toReturn = []
+
+    # Iterate string in reverse
+    for start_indx in range(length-1, -1, -1):
+        # If there is a space, add the word from indx to indx
+        if string[start_indx] == " ":
+            toReturn.append(string[start_indx+1 : end_indx])
+            toReturn.append(" ")
+            end_indx = start_indx
+    # Tail case for final word to add to array
+    toReturn.append(string[0 : end_indx])
+    
+    return "".join(toReturn)
